@@ -1,0 +1,251 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "sm-report-a": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sm-report-a",
+      "sourceRoot": "projects/sm-report-a/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sm-report-a",
+            "index": "projects/sm-report-a/src/index.html",
+            "main": "projects/sm-report-a/src/main.ts",
+            "polyfills": "projects/sm-report-a/src/polyfills.ts",
+            "tsConfig": "projects/sm-report-a/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sm-report-a/src/favicon.ico",
+              "projects/sm-report-a/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/sm-report-a/src/styles.scss"
+            ],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sm-report-a/src/environments/environment.ts",
+                  "with": "projects/sm-report-a/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sm-report-a:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sm-report-a:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sm-report-a:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sm-report-a/src/test.ts",
+            "polyfills": "projects/sm-report-a/src/polyfills.ts",
+            "tsConfig": "projects/sm-report-a/tsconfig.spec.json",
+            "karmaConfig": "projects/sm-report-a/karma.conf.js",
+            "assets": [
+              "projects/sm-report-a/src/favicon.ico",
+              "projects/sm-report-a/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/sm-report-a/src/styles.scss"
+            ],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sm-report-a/tsconfig.app.json",
+              "projects/sm-report-a/tsconfig.spec.json",
+              "projects/sm-report-a/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sm-report-a/e2e/protractor.conf.js",
+            "devServerTarget": "sm-report-a:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sm-report-a:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "sm-report-b": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/sm-report-b",
+      "sourceRoot": "projects/sm-report-b/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sm-report-b",
+            "index": "projects/sm-report-b/src/index.html",
+            "main": "projects/sm-report-b/src/main.ts",
+            "polyfills": "projects/sm-report-b/src/polyfills.ts",
+            "tsConfig": "projects/sm-report-b/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/sm-report-b/src/favicon.ico",
+              "projects/sm-report-b/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/sm-report-b/src/styles.scss"
+            ],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/sm-report-b/src/environments/environment.ts",
+                  "with": "projects/sm-report-b/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sm-report-b:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "sm-report-b:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sm-report-b:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/sm-report-b/src/test.ts",
+            "polyfills": "projects/sm-report-b/src/polyfills.ts",
+            "tsConfig": "projects/sm-report-b/tsconfig.spec.json",
+            "karmaConfig": "projects/sm-report-b/karma.conf.js",
+            "assets": [
+              "projects/sm-report-b/src/favicon.ico",
+              "projects/sm-report-b/src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "projects/sm-report-b/src/styles.scss"
+            ],
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/sm-report-b/tsconfig.app.json",
+              "projects/sm-report-b/tsconfig.spec.json",
+              "projects/sm-report-b/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/sm-report-b/e2e/protractor.conf.js",
+            "devServerTarget": "sm-report-b:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sm-report-b:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "sm-report-a"
+}

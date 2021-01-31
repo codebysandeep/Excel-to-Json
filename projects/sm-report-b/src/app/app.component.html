@@ -1,0 +1,364 @@
+<input type="file" (change)="onChange($event)" #inputFile />
+<button (click)="removeData()">Remove Data</button>
+<div *ngIf="isExcelFile === false">This is not an Excel file</div>
+<span *ngIf="spinnerEnabled" class="k-i-loading k-icon"></span>
+<table>
+  <th *ngFor="let key of keys">
+    {{ key }}
+  </th>
+  <tr *ngFor="let item of dataSheet | async">
+    <td *ngFor="let key of keys">
+      <!-- {{ item[key] }} -->
+      <p (click)="showData(item[key])">{{ item[key] }}</p>
+    </td>
+  </tr>
+</table>
+
+<nav
+  class="navbar navbar-expand-lg p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+>
+  <div class="container-xl">
+    <a class="navbar-brand" href="#"
+      ><img class="mb-2" src="./images/chubb-blue-logo.png" alt="" width="200"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarsExample07XL"
+      aria-controls="navbarsExample07XL"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample07XL">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item active">
+          <a class="p-2 text-dark" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <div>
+        <p class="lead fw-bold m-0">Task Manage Tool</p>
+        <p class="m-0">ClaimSmart Monthly Checklist</p>
+      </div>
+    </div>
+  </div>
+</nav>
+<br />
+
+<main class="container">
+  <div class="row">
+    <div class="col">
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="pb-2 mb-0 text-end text-muted">
+          Recent updates: 06 December 2020
+        </h6>
+
+        <div class="d-flex text-muted pt-3">
+          <!-- Vertical Tab - Parent Start -->
+          <div class="d-flex align-items-start">
+            <div
+              class="nav flex-column nav-pills me-5"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <a
+                class="nav-link mb-4 active"
+                id=""
+                data-bs-toggle="pill"
+                href="#v-pills-p1"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <span
+                      class="badge rounded-pill bg-success"
+                      style="width: 21px"
+                      >&nbsp;</span
+                    >
+                  </div>
+                  <div class="col-10">
+                    <strong class="h4"> Line Inv R1 </strong> <br />
+                    <span class="text-muted"> 25 Dec 2020 </span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                class="nav-link mb-4"
+                id=""
+                data-bs-toggle="pill"
+                href="#v-pills-p2"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <span
+                      class="badge rounded-pill bg-warning"
+                      style="width: 21px"
+                      >&nbsp;</span
+                    >
+                  </div>
+                  <div class="col-10">
+                    <strong class="h4"> EWS BI App </strong> <br />
+                    <span class="text-muted"> 10 Jan 2021 </span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                class="nav-link mb-4"
+                id=""
+                data-bs-toggle="pill"
+                href="#v-pills-p3"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <span
+                      class="badge rounded-pill bg-danger"
+                      style="width: 21px"
+                      >&nbsp;</span
+                    >
+                  </div>
+                  <div class="col-10">
+                    <strong class="h4"> Claim Inv </strong> <br />
+                    <span class="text-muted"> 30 Aug 2020 </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-p1">
+                <!-- Task Tab Start -->
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a
+                      class="nav-link h6 active"
+                      id="nav-home-tab"
+                      data-bs-toggle="tab"
+                      href="#nav-home"
+                      role="tab"
+                      aria-controls="nav-home"
+                      aria-selected="true"
+                      >RUN MCC Tree SQL</a
+                    >
+                    <a
+                      class="nav-link h6"
+                      id="nav-profile-tab"
+                      data-bs-toggle="tab"
+                      href="#nav-profile"
+                      role="tab"
+                      aria-controls="nav-profile"
+                      aria-selected="false"
+                      >CDW Extract, Validation, and Sign Off and Tolerance
+                      Report</a
+                    >
+                    <a
+                      class="nav-link h6"
+                      id="nav-contact-tab"
+                      data-bs-toggle="tab"
+                      href="#nav-contact"
+                      role="tab"
+                      aria-controls="nav-contact"
+                      aria-selected="false"
+                      >HR Update</a
+                    >
+                    <a
+                      class="nav-link h6"
+                      id="nav-info-tab"
+                      data-bs-toggle="tab"
+                      href="#nav-contact"
+                      role="tab"
+                      aria-controls="nav-contact"
+                      aria-selected="false"
+                      >Line Inv R1 Data Ready</a
+                    >
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="nav-home"
+                    role="tabpanel"
+                    aria-labelledby="nav-home-tab"
+                  >
+                    <table
+                      class="table table-striped table-hover my-4"
+                      style="min-width: 995px"
+                    >
+                      <thead class="table-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Sub Task</th>
+                          <th scope="col">Expected Date</th>
+                          <th scope="col">Actual Date</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td><strong>MCC Release 1</strong></td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >20/12/2020</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >01/01/2021</span
+                            >
+                          </td>
+                          <td>
+                            <span
+                              class="badge rounded-pill bg-warning"
+                              style="width: 21px"
+                              >&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td><strong>Run CDW Extracts</strong></td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >20/12/2020</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >01/01/2021</span
+                            >
+                          </td>
+                          <td>
+                            <span
+                              class="badge rounded-pill bg-success"
+                              style="width: 21px"
+                              >&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td>
+                            <strong>Run Value Consistency CDW</strong>
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >20/12/2020</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >01/01/2021</span
+                            >
+                          </td>
+                          <td>
+                            <span
+                              class="badge rounded-pill bg-danger"
+                              style="width: 21px"
+                              >&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4</th>
+                          <td>
+                            <strong>Run Line Level ClaimCare Extracts</strong>
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >20/12/2020</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >01/01/2021</span
+                            >
+                          </td>
+                          <td>
+                            <span
+                              class="badge rounded-pill bg-warning"
+                              style="width: 21px"
+                              >&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">5</th>
+                          <td><strong>HR Monthly Part 1</strong></td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >20/12/2020</span
+                            >
+                          </td>
+                          <td>
+                            <span class="badge rounded-pill bg-light text-dark"
+                              >01/01/2021</span
+                            >
+                          </td>
+                          <td>
+                            <span
+                              class="badge rounded-pill bg-success"
+                              style="width: 21px"
+                              >&nbsp;</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="nav-profile"
+                    role="tabpanel"
+                    aria-labelledby="nav-profile-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="nav-contact"
+                    role="tabpanel"
+                    aria-labelledby="nav-contact-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="nav-info"
+                    role="tabpanel"
+                    aria-labelledby="nav-contact-tab"
+                  >
+                    ... info
+                  </div>
+                </div>
+                <!-- Task Tab End -->
+              </div>
+              <div class="tab-pane fade" id="v-pills-p2">... 2</div>
+              <div class="tab-pane fade" id="v-pills-p3">... 3</div>
+            </div>
+          </div>
+          <!-- Vertical Tab - Parent End -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="pt-5 my-md-4 pt-md-4 border-top">
+    <div class="d-flex justify-content-between">
+      <div class="">
+        <small class="d-block mb-3 text-muted">&copy; 2020</small>
+      </div>
+      <div class="">
+        <img
+          class="mb-2"
+          src="./images/chubb-gray-logo.png"
+          alt=""
+          width="150"
+        />
+      </div>
+    </div>
+  </footer>
+</main>
