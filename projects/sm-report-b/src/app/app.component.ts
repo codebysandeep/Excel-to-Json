@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +10,38 @@ import { Subject } from 'rxjs';
 export class AppComponent {
   title = 'sm-report-b';
 
+  parentTask;
+  tasks;
+  responsible;
+
   spinnerEnabled = false;
   keys: string[];
-  dataSheet = new Subject();
+  dataSheet = new BehaviorSubject(null);
   @ViewChild('inputFile') inputFile: ElementRef;
   isExcelFile: boolean;
 
-  showData(e) {
-    alert(e);
-    // console.log(this.dataSheet);
-    // this.dataSheet.value.filter((x) => { });
-
-    // this.dataSheet.subscribe((value) => {
-    //   console.log(value);
-    // });
-
-    this.dataSheet.subscribe({
-      next: (v) => console.log(`observerA: ${v}`),
-    });
+  onParentClick(value) {
+    let array = this.dataSheet.getValue();
+    let task = array.filter((x) => x['Parent-Task'] === value);
+    this.tasks = [...new Set(this.filterByKey(task, 'Task'))];
+    // console.log(this.responsible);
   }
+
+  showData(value, key) {
+    let array = this.dataSheet.getValue();
+    let filtered = array.filter((x) => x[key] === value);
+    console.log(filtered);
+  }
+
+  onTaskClick(value) {
+    let array = this.dataSheet.getValue();
+    this.responsible = array.filter((x) => x['Task'] === value);
+    console.log(this.responsible);
+  }
+
+  filterByKey = (array, key) => {
+    return array.map((x) => x[key]);
+  };
 
   onChange(evt) {
     let data, header;
@@ -59,6 +72,8 @@ export class AppComponent {
         this.spinnerEnabled = false;
         this.keys = Object.keys(data[0]);
         this.dataSheet.next(data);
+        // this.tasks = [...new Set(this.filterByKey(data, 'Task'))];
+        this.parentTask = [...new Set(this.filterByKey(data, 'Parent-Task'))];
       };
     } else {
       this.inputFile.nativeElement.value = '';
